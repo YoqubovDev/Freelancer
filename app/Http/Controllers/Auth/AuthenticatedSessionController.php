@@ -24,11 +24,23 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Auth attempt
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Foydalanuvchini olish va rollarni yuklash
+        $user = Auth::user()->load('roles'); // roles bilan birga yuklash
+        $roles = $user->roles->pluck('name'); // faqat role nomlari kolleksiyasi
+
+        // Roli asosida yo'naltirish
+        if ($roles->contains('admin')) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        if ($roles->contains('moderator')) {
+            return redirect()->route('moderator.panel');
+        }
+
     }
 
     /**
@@ -39,7 +51,6 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');

@@ -1,0 +1,157 @@
+/* Custom Styles for FreeFolio Admin Panel */
+
+/* Tab Navigation */
+.tab-btn {
+    @apply whitespace-nowrap py-2 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-colors duration-200;
+}
+
+.tab-btn.active {
+    @apply border-blue-500 text-blue-600;
+}
+
+/* Tab Content */
+.tab-content {
+    @apply hidden;
+}
+
+.tab-content.active {
+    @apply block;
+}
+
+/* Form Elements */
+.input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200;
+}
+
+.input-field:focus {
+    @apply ring-2 ring-blue-500 border-blue-500;
+}
+
+/* Buttons */
+.btn-primary {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200;
+}
+
+.btn-secondary {
+    @apply inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200;
+}
+
+.btn-danger {
+    @apply inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200;
+}
+
+/* File Upload */
+.file-upload-container {
+    @apply relative;
+}
+
+.file-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100;
+}
+
+.file-preview {
+    @apply mt-2;
+}
+
+.file-preview img {
+    @apply w-20 h-20 object-cover rounded border;
+}
+
+/* Dynamic Items */
+.dynamic-item {
+    @apply bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-4;
+}
+
+.dynamic-item-header {
+    @apply flex justify-between items-center mb-4;
+}
+
+/* Skills Progress Bar */
+.skill-progress {
+    @apply w-full bg-gray-200 rounded-full h-2;
+}
+
+.skill-progress-bar {
+    @apply bg-blue-600 h-2 rounded-full transition-all duration-300;
+}
+
+/* Messages */
+.message {
+    @apply px-4 py-3 rounded-md shadow-lg text-sm font-medium transition-all duration-300 transform;
+}
+
+.message.success {
+    @apply bg-green-100 border border-green-400 text-green-700;
+}
+
+.message.error {
+    @apply bg-red-100 border border-red-400 text-red-700;
+}
+
+.message.show {
+    @apply translate-x-0 opacity-100;
+}
+
+.message.hide {
+    @apply translate-x-full opacity-0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tab-btn {
+        @apply text-xs px-2;
+    }
+
+    .grid {
+        @apply grid-cols-1;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

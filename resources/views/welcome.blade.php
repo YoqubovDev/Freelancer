@@ -53,7 +53,7 @@
                 <a href="/" class="btn btn-outline-primary">Hire Me</a>
             </div>
             <div class="mr-3">
-                <a href="/feedback" class="btn btn-outline-info">Feedback</a>
+                <a href="/home/shehroz/freelencer/resources/views/feedback.blade" class="btn btn-outline-info">Feedback</a>
             </div>
             <div>
                 @if (Route::has('login'))
