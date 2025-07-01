@@ -246,6 +246,16 @@
                         </div>
                     </div>
                 </div>
+                <h2>Yangi fikr-mulohaza yuborildi</h2>
+
+                <p><strong>Ism:</strong> {{ $data['name'] ?? 'Noma’lum' }}</p>
+                <p><strong>Tur:</strong> {{ $data['feedbackType'] }}</p>
+                <p><strong>Reyting:</strong> {{ $data['rating'] }}/5</p>
+                <p><strong>Mavzu:</strong> {{ $data['subject'] ?? 'Yo‘q' }}</p>
+                <p><strong>Daraja:</strong> {{ $data['priority'] ?? 'Ko‘rsatilmagan' }}</p>
+                <p><strong>Xabar:</strong></p>
+                <p>{{ $data['message'] }}</p>
+                <p><strong>Bog‘lanish ruxsati:</strong> {{ isset($data['allowContact']) ? 'Ha' : 'Yo‘q' }}</p>
 
                 <!-- FAQ -->
                 <div class="bg-white rounded-lg shadow-sm border border-gray-200">
@@ -370,8 +380,30 @@
             return;
         }
 
-        // Here you would typically send the data to your backend
-        console.log('Feedback submitted:', Object.fromEntries(formData));
+        fetch('/feedback/send', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    showToast('Muvaffaqiyatli yuborildi!', 'Email orqali sizga javob beramiz.');
+                    e.target.reset();
+                    currentRating = 0;
+                    updateStars();
+                    ratingInput.value = '0';
+                    ratingText.textContent = '';
+                    feedbackCards.forEach(c => c.classList.remove('selected'));
+                } else {
+                    showToast('Xatolik', 'Email yuborishda muammo yuz berdi.', 'error');
+                }
+            })
+            .catch(() => {
+                showToast('Xatolik', 'Server bilan bog\'lanishda muammo yuz berdi.', 'error');
+            });
 
         showToast('Muvaffaqiyatli yuborildi!', 'Sizning fikr-mulohazangiz uchun rahmat. Tez orada javob beramiz.');
 

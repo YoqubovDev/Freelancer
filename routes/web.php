@@ -15,6 +15,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/feedback', function () {
     return view('feedback');});
+Route::post('/feedback/send', [FeedbackController::class, 'send']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
