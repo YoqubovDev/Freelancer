@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,5 +31,8 @@ Route::middleware(['auth' ,'role:admin'])->group(function () {
     });
 });
 Route::post('/feedback/send', [FeedbackController::class, 'submit']);
+
+
+Route::resource('educations', EducationController::class);
 
 require __DIR__.'/auth.php';

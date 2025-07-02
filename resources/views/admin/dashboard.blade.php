@@ -304,14 +304,14 @@
         </div>
 
         <!-- Profile Tab -->
-        <div id="profile-tab" class="tab-content active">
+        <div id="profile-tab" class="tab-content active block">
             <div class="bg-white rounded-lg shadow-sm border p-6">
                 <h2 class="text-xl font-semibold mb-6">Profile Information</h2>
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
-                            <input type="text" id="profile-name" class="input-field" placeholder="Full Name" required>
+                            <label  class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                            <input type="text" id="name" class="input-field" placeholder="Full Name" required>
                             <div class="error-text" id="profile-name-error"></div>
                         </div>
                         <div>
@@ -322,23 +322,23 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Professional Titles *</label>
-                        <input type="text" id="profile-title" class="input-field" placeholder="Web Designer, Developer, etc." required>
+                        <input type="text" id="title" class="input-field" placeholder="Web Designer, Developer, etc." required>
                         <div class="error-text" id="profile-title-error"></div>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Description *</label>
-                        <textarea id="profile-description" rows="3" class="input-field" placeholder="Brief description about yourself" required></textarea>
+                        <textarea id="description" rows="3" class="input-field" placeholder="Brief description about yourself" required></textarea>
                         <div class="error-text" id="profile-description-error"></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">CV File</label>
-                            <input type="file" id="profile-cv" accept=".pdf,.doc,.docx" class="file-input">
+                            <input type="file" id="cv_file" accept=".pdf,.doc,.docx" class="file-input">
                             <div class="file-preview mt-2" id="profile-cv-preview"></div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Video URL</label>
-                            <input type="url" id="profile-video" class="input-field" placeholder="YouTube embed URL">
+                            <input type="url" id="video_url" class="input-field" placeholder="YouTube embed URL">
                         </div>
                     </div>
                     <button class="btn-primary" onclick="saveProfile()">
@@ -349,45 +349,45 @@
         </div>
 
         <!-- About Tab -->
-        <div id="about-tab" class="tab-content">
+        <div id="about-tab" class="tab-content block">
             <div class="bg-white rounded-lg shadow-sm border p-6">
                 <h2 class="text-xl font-semibold mb-6">About Information</h2>
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
-                            <input type="text" id="about-name" class="input-field" required>
+                            <input type="text" id="name" class="input-field" required>
                             <div class="error-text" id="about-name-error"></div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Birthday</label>
-                            <input type="text" id="about-birthday" class="input-field">
+                            <input type="text" id="birthday" class="input-field">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Degree</label>
-                            <input type="text" id="about-degree" class="input-field">
+                            <input type="text" id="degree" class="input-field">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Experience</label>
-                            <input type="text" id="about-experience" class="input-field">
+                            <input type="text" id="experience" class="input-field">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Phone *</label>
-                            <input type="tel" id="about-phone" class="input-field" required>
+                            <input type="tel" id="phone" class="input-field" required>
                             <div class="error-text" id="about-phone-error"></div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-                            <input type="email" id="about-email" class="input-field" required>
+                            <input type="email" id="email" class="input-field" required>
                             <div class="error-text" id="about-email-error"></div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Address</label>
-                            <input type="text" id="about-address" class="input-field">
+                            <input type="text" id="address" class="input-field">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Freelance Status</label>
-                            <select id="about-freelance" class="input-field">
+                            <select id="freelance" class="input-field">
                                 <option value="Available">Available</option>
                                 <option value="Busy">Busy</option>
                                 <option value="Not Available">Not Available</option>
@@ -396,7 +396,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Description *</label>
-                        <textarea id="about-description" rows="4" class="input-field" required></textarea>
+                        <textarea id="description" rows="4" class="input-field" required></textarea>
                         <div class="error-text" id="about-description-error"></div>
                     </div>
                     <div>
@@ -412,7 +412,7 @@
         </div>
 
         <!-- Education Tab -->
-        <div id="education-tab" class="tab-content">
+        <div id="education-tab" class="tab-content block">
             <div class="bg-white rounded-lg shadow-sm border p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-semibold">Education</h2>
@@ -421,13 +421,20 @@
                     </button>
                 </div>
                 <div id="education-list" class="space-y-4">
-                    <!-- Education items will be dynamically added here -->
+                    <form action="{{ route('educations.store') }}" method="POST">
+                        @csrf
+                        <input type="text" name="degree" placeholder="Degree" required>
+                        <input type="text" name="institution" placeholder="Institution" required>
+                        <input type="text" name="year" placeholder="Year" required>
+                        <textarea name="description" placeholder="Description"></textarea>
+                        <button type="submit">Save</button>
+                    </form>
                 </div>
             </div>
         </div>
 
         <!-- Experience Tab -->
-        <div id="experience-tab" class="tab-content">
+        <div id="experience-tab" class="tab-content block">
             <div class="bg-white rounded-lg shadow-sm border p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-semibold">Work Experience</h2>
@@ -442,7 +449,7 @@
         </div>
 
         <!-- Skills Tab -->
-        <div id="skills-tab" class="tab-content">
+        <div id="skills-tab" class="tab-content block">
             <div class="bg-white rounded-lg shadow-sm border p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-semibold">Skills</h2>
@@ -457,7 +464,7 @@
         </div>
 
         <!-- Services Tab -->
-        <div id="services-tab" class="tab-content">
+        <div id="services-tab" class="tab-content block">
             <div class="bg-white rounded-lg shadow-sm border p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-semibold">Services</h2>
@@ -472,7 +479,7 @@
         </div>
 
         <!-- Portfolio Tab -->
-        <div id="portfolio-tab" class="tab-content">
+        <div id="portfolio-tab" class="tab-content block">
             <div class="bg-white rounded-lg shadow-sm border p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-semibold">Portfolio</h2>
@@ -487,7 +494,7 @@
         </div>
 
         <!-- Testimonials Tab -->
-        <div id="testimonials-tab" class="tab-content">
+        <div id="testimonials-tab" class="tab-content block">
             <div class="bg-white rounded-lg shadow-sm border p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-semibold">Testimonials</h2>
@@ -502,7 +509,7 @@
         </div>
 
         <!-- Blog Tab -->
-        <div id="blog-tab" class="tab-content">
+        <div id="blog-tab" class="tab-content block">
             <div class="bg-white rounded-lg shadow-sm border p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-semibold">Blog Posts</h2>
@@ -876,6 +883,9 @@
                 return;
             }
 
+            // YANGI: AJAX orqali backendga yuboramiz
+            saveEducationAJAX(item.degree, item.institution, item.year, item.description);
+
             saveData();
             showMessage("Ta'lim ma'lumoti saqlandi!", "success");
         }
@@ -892,6 +902,26 @@
             renderEducation();
             saveData();
             showMessage("Ta'lim ma'lumoti o'chirildi!", "success");
+        }
+        function saveEducationAJAX(degree, institution, year, description) {
+            fetch('/educations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+                },
+                body: JSON.stringify({
+                    degree: degree,
+                    institution: institution,
+                    year: year,
+                    description: description
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Saved!');
+                    // listni yangilash yoki boshqa amallar
+                });
         }
 
         // Experience Management

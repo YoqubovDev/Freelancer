@@ -231,7 +231,7 @@
                     <div class="p-6 space-y-4">
                         <div>
                             <h4 class="font-medium mb-1">Email</h4>
-                            <p class="text-sm text-gray-600">support@example.com</p>
+                            <p class="text-sm text-gray-600">xiyobidasturchi0011@gmail.com</p>
                         </div>
                         <div>
                             <h4 class="font-medium mb-1">Telefon</h4>
@@ -246,16 +246,16 @@
                         </div>
                     </div>
                 </div>
-                <h2>Yangi fikr-mulohaza yuborildi</h2>
+{{--                <h2>Yangi fikr-mulohaza yuborildi</h2>--}}
 
-                <p><strong>Ism:</strong> {{ $data['name'] ?? 'Noma’lum' }}</p>
-                <p><strong>Tur:</strong> {{ $data['feedbackType'] }}</p>
-                <p><strong>Reyting:</strong> {{ $data['rating'] }}/5</p>
-                <p><strong>Mavzu:</strong> {{ $data['subject'] ?? 'Yo‘q' }}</p>
-                <p><strong>Daraja:</strong> {{ $data['priority'] ?? 'Ko‘rsatilmagan' }}</p>
-                <p><strong>Xabar:</strong></p>
-                <p>{{ $data['message'] }}</p>
-                <p><strong>Bog‘lanish ruxsati:</strong> {{ isset($data['allowContact']) ? 'Ha' : 'Yo‘q' }}</p>
+{{--                <p><strong>Ism:</strong> {{ $data['name'] ?? 'Noma’lum' }}</p>--}}
+{{--                <p><strong>Tur:</strong> {{ $data['feedbackType'] }}</p>--}}
+{{--                <p><strong>Reyting:</strong> {{ $data['rating'] }}/5</p>--}}
+{{--                <p><strong>Mavzu:</strong> {{ $data['subject'] ?? 'Yo‘q' }}</p>--}}
+{{--                <p><strong>Daraja:</strong> {{ $data['priority'] ?? 'Ko‘rsatilmagan' }}</p>--}}
+{{--                <p><strong>Xabar:</strong></p>--}}
+{{--                <p>{{ $data['message'] }}</p>--}}
+{{--                <p><strong>Bog‘lanish ruxsati:</strong> {{ isset($data['allowContact']) ? 'Ha' : 'Yo‘q' }}</p>--}}
 
                 <!-- FAQ -->
                 <div class="bg-white rounded-lg shadow-sm border border-gray-200">

@@ -13,13 +13,13 @@ class FeedbackMail extends Mailable
 
     public function __construct(array $data)
     {
-        $this->data = $data; // <-- $this->data orqali viewga uzatamiz
+        $this->data = $data;
     }
 
     public function build()
     {
         return $this->subject('Yangi fikr-mulohaza')
-            ->view('feedback')  // blade fayl nomi
-            ->with(['data' => $this->data]); // <-- bu joy shart
+            ->view('feedback')
+            ->with(['data' => $this->data]);
     }
 }
