@@ -10,29 +10,33 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Authenticated and verified users
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
 
-Route::get('/feedback', function () {
-    return view('feedback');});
-Route::post('/feedback/send', [FeedbackController::class, 'send']);
+    // Education resource route
+    Route::resource('educations', EducationController::class);
 
-Route::middleware('auth')->group(function () {
+    // Feedback page (GET)
+    Route::get('/feedback', function () {
+        return view('feedback');
+    });
+
+    // Feedback send (POST)
+    Route::post('/feedback/send', [FeedbackController::class, 'send']);
+
+    // Profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 });
 
-Route::middleware(['auth' ,'role:admin'])->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-    });
+// Admin panel, faqat adminlar uchun
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 });
-Route::post('/feedback/send', [FeedbackController::class, 'submit']);
 
-
-Route::resource('educations', EducationController::class);
-
+// Auth route-lar
 require __DIR__.'/auth.php';

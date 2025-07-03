@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>FreeFolio Admin Panel</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -421,7 +422,7 @@
                     </button>
                 </div>
                 <div id="education-list" class="space-y-4">
-                    <form action="{{ route('educations.store') }}" method="POST">
+                    <form onsubmit="event.preventDefault(); saveEducationAJAX(this.querySelector('[name=degree]').value, this.querySelector('[name=institution]').value, this.querySelector('[name=year]').value, this.querySelector('[name=description]').value)">
                         @csrf
                         <input type="text" name="degree" placeholder="Degree" required>
                         <input type="text" name="institution" placeholder="Institution" required>
@@ -904,11 +905,14 @@
             showMessage("Ta'lim ma'lumoti o'chirildi!", "success");
         }
         function saveEducationAJAX(degree, institution, year, description) {
+            console.log('Sending AJAX request:', { degree, institution, year, description });
+            const token = document.querySelector('input[name="_token"]').value;
+            console.log('CSRF Token:', token);
             fetch('/educations', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+                    'X-CSRF-TOKEN': token
                 },
                 body: JSON.stringify({
                     degree: degree,
@@ -917,10 +921,23 @@
                     description: description
                 })
             })
-                .then(response => response.json())
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    if (!response.ok) {
+                        return response.json().then(errorData => {
+                            throw new Error(JSON.stringify(errorData));
+                        });
+                    }
+                    return response.json();
+                })
                 .then(data => {
+                    console.log('Response data:', data);
                     alert('Saved!');
-                    // listni yangilash yoki boshqa amallar
+                    renderEducation();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to save: ' + error.message);
                 });
         }
 

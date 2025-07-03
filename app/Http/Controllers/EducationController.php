@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Education;
+use Illuminate\Container\Attributes\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EducationController extends Controller
 {
@@ -27,7 +29,17 @@ class EducationController extends Controller
             'description' => 'nullable',
         ]);
 
-        Education::create($request->all());
+        $education = Education::create($request->only(['degree', 'institution', 'year', 'description']));
+
+        // AJAX yoki JSON so‘rov bo‘lsa, JSON qaytaradi
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Education created successfully.",
+                'data' => $education,
+            ]);
+        }
+        // Oddiy form POST uchun
         return redirect()->route('educations.index')->with('success', 'Education created successfully.');
     }
 
