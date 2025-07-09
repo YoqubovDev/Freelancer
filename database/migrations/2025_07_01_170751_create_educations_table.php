@@ -4,22 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateEducationsTable extends Migration
 {
-    public function up(): void
+    public function up()
     {
         Schema::create('educations', function (Blueprint $table) {
             $table->id();
-            $table->string('degree');
-            $table->string('institution');
-            $table->string('year');
+            $table->string('title')->nullable();
+            $table->string('institution')->nullable();
+            $table->string('period')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });
     }
 
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('educations');
+        Schema::dropIfExists('education');
     }
-};
+}

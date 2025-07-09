@@ -3,72 +3,50 @@
 namespace App\Http\Controllers;
 
 use App\Models\Education;
-use Illuminate\Container\Attributes\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class EducationController extends Controller
 {
     public function index()
     {
-        $educations = Education::all();
-        return view('educations.index', compact('educations'));
+        return response()->json(Education::orderBy('id', 'desc')->get());
     }
-
-    public function create()
-    {
-        return view('educations.create');
-    }
+// app/Http/Controllers/EducationController.php
 
     public function store(Request $request)
     {
-        $request->validate([
-            'degree' => 'required',
-            'institution' => 'required',
-            'year' => 'required',
-            'description' => 'nullable',
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'institution' => 'nullable|string|max:255',
+            'period' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
         ]);
-
-        $education = Education::create($request->only(['degree', 'institution', 'year', 'description']));
-
-        // AJAX yoki JSON so‘rov bo‘lsa, JSON qaytaradi
-        if ($request->ajax() || $request->wantsJson()) {
-            return response()->json([
-                'success' => true,
-                'message' => "Education created successfully.",
-                'data' => $education,
-            ]);
-        }
-        // Oddiy form POST uchun
-        return redirect()->route('educations.index')->with('success', 'Education created successfully.');
+        $education = Education::create($validated);
+        return response()->json($education, 201);
     }
 
-    public function show(Education $education)
+    public function update(Request $request, $id)
     {
-        return view('educations.show', compact('education'));
-    }
-
-    public function edit(Education $education)
-    {
-        return view('educations.edit', compact('education'));
-    }
-
-    public function update(Request $request, Education $education)
-    {
-        $request->validate([
-            'degree' => 'required',
-            'institution' => 'required',
-            'year' => 'required',
-            'description' => 'nullable',
+        $education = Education::findOrFail($id);
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'institution' => 'nullable|string|max:255',
+            'period' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
         ]);
-
-        $education->update($request->all());
-        return redirect()->route('educations.index')->with('success', 'Education updated successfully.');
+        $education->update($validated);
+        return response()->json($education);
     }
 
-    public function destroy(Education $education)
+    public function show($id)
     {
-        $education->delete();
-        return redirect()->route('educations.index')->with('success', 'Education deleted successfully.');
+        $education = Education::findOrFail($id);
+        return response()->json($education);
+    }
+
+    public function destroy($id)
+    {
+        Education::destroy($id);
+        return response()->json(null, 204);
     }
 }

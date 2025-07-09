@@ -17,7 +17,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     // Education resource route
-    Route::resource('educations', EducationController::class);
+//    Route::resource('educations', EducationController::class)
+    Route::get('/education', [EducationController::class, 'index']);
+    Route::post('/education', [EducationController::class, 'store']);
+    Route::get('/education/{id}', [EducationController::class, 'show']);
+    Route::put('/education/{id}', [EducationController::class, 'update']);
+    Route::delete('/education/{id}', [EducationController::class, 'destroy']);
+
+
+
 
     // Feedback page (GET)
     Route::get('/feedback', function () {
