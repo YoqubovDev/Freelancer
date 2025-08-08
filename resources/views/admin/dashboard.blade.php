@@ -1546,6 +1546,7 @@
                             <span>CV file uploaded: ${file.name}</span>
                         </div>`
             }
+
         })
 
         // About image upload
@@ -1560,6 +1561,7 @@
                             <div class="text-sm text-gray-600">About section image uploaded successfully</div>
                         </div>`
             }
+
         })
     }
 
@@ -1567,6 +1569,7 @@
     function saveToLocalStorage() {
         localStorage.setItem("portfolioData", JSON.stringify(portfolioData))
     }
+
 
     function loadFromLocalStorage() {
         const savedData = localStorage.getItem("portfolioData")
@@ -1580,6 +1583,7 @@
         }
     }
 
+
     function exportData() {
         const dataStr = JSON.stringify(portfolioData, null, 2)
         const dataBlob = new Blob([dataStr], { type: "application/json" })
@@ -1591,6 +1595,7 @@
         URL.revokeObjectURL(url)
         showMessage("Portfolio data exported successfully!")
     }
+
 
     function importData() {
         const input = document.createElement("input")
@@ -1634,6 +1639,7 @@
         showMessage("FreeFolio Admin Panel loaded successfully!")
     }
 
+
     // Auto-save functionality
     setInterval(() => {
         saveToLocalStorage()
@@ -1655,6 +1661,7 @@
             `
         document.head.appendChild(style)
     })
+    
 </script>
 </body>
 </html>
