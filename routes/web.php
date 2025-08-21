@@ -6,6 +6,22 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/api/documentation', function () {
+    return view('vendor.l5-swagger.index', [
+        'documentation' => 'default',
+        'documentationTitle' => config('l5-swagger.documentations.default.api.title', 'API Docs'),
+        'urlsToDocs' => [
+            'default' => url(config('l5-swagger.documentations.default.routes.api')),
+        ],
+        'operationsSorter' => null,
+        'configUrl' => null,
+        'validatorUrl' => null,
+        'useAbsolutePath' => false,
+    ]);
+});
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -45,6 +61,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 });
+
+
 
 // Auth route-lar
 require __DIR__.'/auth.php';

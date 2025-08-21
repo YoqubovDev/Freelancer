@@ -12,7 +12,16 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
+     * @OA\Get(
+     *     path="/api/profile",
+     *     summary="Get user profile",
+     *     tags={"Profile"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="User profile data returned successfully"
+     *     ),
+     *     security={{"sanctum":{}}}
+     * )
      */
     public function edit(Request $request): View
     {
@@ -22,7 +31,24 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * @OA\Put(
+     *     path="/api/profile",
+     *     summary="Update user profile",
+     *     tags={"Profile"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="name", type="string", example="John Doe"),
+     *             @OA\Property(property="email", type="string", example="john@example.com")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Profile updated successfully"
+     *     ),
+     *     security={{"sanctum":{}}}
+     * )
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
@@ -38,7 +64,16 @@ class ProfileController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * @OA\Delete(
+     *     path="/api/profile",
+     *     summary="Delete user account",
+     *     tags={"Profile"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="User account deleted successfully"
+     *     ),
+     *     security={{"sanctum":{}}}
+     * )
      */
     public function destroy(Request $request): RedirectResponse
     {
@@ -47,9 +82,7 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
-
         Auth::logout();
-
         $user->delete();
 
         $request->session()->invalidate();
